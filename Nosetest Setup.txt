@@ -1,0 +1,7 @@
+This is an easier way to run the nosetests if you have already installed Anaconda
+
+->Open any CLI (typically Git Bash)
+->cd to the directory of where you installed Anaconda
+->type in the command: "conda install nose"
+
+**NOT COMPLETED YET**
