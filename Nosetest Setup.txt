@@ -3,5 +3,11 @@ This is an easier way to run the nosetests if you have already installed Anacond
 ->Open any CLI (typically Git Bash)
 ->cd to the directory of where you installed Anaconda
 ->type in the command: "conda install nose"
+->After you have successfully installed nose, make you also have 
+  scikit-learn installed by running the command: "conda install scikit-learn".
+  If you already installed the packages, the location of packages in environment
+  will be shown
+->after that, simply run the command: "nosetests -v sklearn" under the directory where
+  you have scikit-learn installed
 
 **NOT COMPLETED YET**
