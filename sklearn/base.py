@@ -10,14 +10,8 @@ import numpy as np
 from scipy import sparse
 from .externals import six
 from .utils.fixes import signature
-from . import __version__
-
-
-##############################################################################
-def _first_and_last_element(arr):
-    """Returns first and last element of numpy array or sparse matrix."""
-    if isinstance(arr, np.ndarray) or hasattr(arr, 'data'):
-        # numpy array or sparse matrix with .data attribute
+from . imp#####################################################################
+def _first_and_last numpy array or sparse matrix with .data attribute
         data = arr.data if sparse.issparse(arr) else arr
         return data.flat[0], data.flat[-1]
     else:
@@ -25,14 +19,9 @@ def _first_and_last_element(arr):
         # the time of writing, in this case indexing is fast
         return arr[0, 0], arr[-1, -1]
 
-
-def clone(estimator, safe=True):
-    """Constructs a new estimator with the same parameters.
-
-    Clone does a deep copy of the model in an estimator
+ deep copy of the model in an estimator
     without actually copying attached data. It yields a new estimator
     with the same parameters that has not been fit on any data.
-
     Parameters
     ----------
     estimator : estimator object, or list, tuple or set of objects
