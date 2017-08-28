@@ -1,47 +1,7 @@
 #! /usr/bin/env python
 #
 # Copyright (C) 2007-2009 Cournapeau David <cournape@gmail.com>
-#               2010 Fabian Pedregosa <fabian.pedregosa@inria.fr>
-# License: 3-clause BSD
-descr = """A set of python modules for machine learning and data mining"""
-
-import sys
-import os
-import shutil
-from distutils.command.clean import clean as Clean
-from pkg_resources import parse_version
-import traceback
-
-if sys.version_info[0] < 3:
-    import __builtin__ as builtins
-else:
-    import builtins
-
-# This is a bit (!) hackish: we are setting a global variable so that the main
-# sklearn __init__ can detect if it is being loaded by the setup routine, to
-# avoid attempting to load components that aren't built yet:
-# the numpy distutils extensions that are used by scikit-learn to recursively
-# build the compiled extensions in sub-packages is based on the Python import
-# machinery.
-builtins.__SKLEARN_SETUP__ = True
-
-DISTNAME = 'scikit-learn'
-DESCRIPTION = 'A set of python modules for machine learning and data mining'
-with open('README.rst') as f:
-    LONG_DESCRIPTION = f.read()
-MAINTAINER = 'Andreas Mueller'
-MAINTAINER_EMAIL = 'amueller@ais.uni-bonn.de'
-URL = 'http://scikit-learn.org'
-DOWNLOAD_URL = 'https://pypi.org/project/scikit-learn/#files'
-LICENSE = 'new BSD'
-
-# We can actually import a restricted version of sklearn that
-# does not need the compiled code
-import sklearn
-
-VERSION = sklearn.__version__
-
-SCIPY_MIN_VERSION = '0.13.3'
+#          u
 NUMPY_MIN_VERSION = '1.8.2'
 
 
