@@ -8,42 +8,18 @@ cache:
   directories:
   - $HOME/.cache/pip
   - $HOME/.ccache
-
-dist: trusty
-
-env:
-  global:
-    # Directory where tests are run from
-    - TEST_DIR=/tmp/sklearn
-    - OMP_NUM_THREADS=4
-    - OPENBLAS_NUM_THREADS=4
-
 matrix:
   include:
-    python: 3.7
-      env:
-        - CHECK_WARNINGS="true"
-        - CI_CPU_COUNT="3"
-      if: type = cron OR commit_message =~ /\[scipy-dev\]/
-
-    # As above but build scikit-learn with Intel C compiler (ICC).
-    - python: 3.7
-      env:
-        - CHECK_WARNING="true"
-        - BUILD_WITH_ICC="true"
-        - CI_CPU_COUNT="3"
-      if: type = cron OR commit_message =~ /\[icc-build\]/
-
-    - python: 3.7
-      env:
-        - CI_CPU_COUNT="8"
-      os: linux
-      arch: arm64
-      if: type = cron OR commit_message =~ /\[arm64\]/
-  allow_failures:
-    # allow_failures seems to be keyed on the python version
-    # We are using this to allow failures for DISTRIB=scipy-dev-wheels
-    - python: 3.5
+    - name: "Python 3.5.4 on Windows"
+      os: windows           # Windows 10.0.17134 N/A Build 17134
+      language: shell       # 'language: python' is an error on Travis CI Windows
+      before_install:
+        - choco install python --version 3.5.4
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
+      env: PATH=/c/Python35:/c/Python35/Scripts:$PATH
 
 install: source build_tools/travis/install.sh
 script: bash build_tools/travis/test_script.sh
